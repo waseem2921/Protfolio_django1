@@ -75,12 +75,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         'NAME': 'content',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'FEROZKHAN',
+        'USER': 'admin',
+        'PASSWORD': 'wASEEMKHAN2921',
+        'HOST': 'database-1.c9gqw8ayg4h8.eu-north-1.rds.amazonaws.com',
+        'PORT': '1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
-            'Trusted_Connection': 'yes',
         },
     }
 }
