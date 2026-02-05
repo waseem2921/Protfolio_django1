@@ -3,3 +3,4 @@ gunicorn
 whitenoise
 pyodbc
 Pillow
+psycopg2-binary
