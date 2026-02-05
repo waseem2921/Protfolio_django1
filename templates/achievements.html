@@ -1,0 +1,126 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Portfolio</title>
+<meta http-equiv="X-UA-Compatible" content="IE-edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--title-icon-->
+<link rel="shortcut icon" href="images/icon.png">
+<style href="{% static 'css/style.css' %}" name='stylesheet'></style>
+<style>
+    #achievements {
+    padding: 80px 10%;
+    background: #0f0f0f;
+    color: #fff;
+}
+.section-title {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+.achievement-card {
+    background: #151515;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+.achievement-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.achievement-card .description {
+    font-size: 14px;
+    color: #cfcfcf;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+.achievement-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: #222;
+}
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 ratio */
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 15px;
+    background: #000;
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+@media (max-width: 600px) {
+    .section-title {
+        font-size: 30px;
+    }
+
+    .achievement-card {
+        padding: 18px;
+    }
+}
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+</style>
+</head>
+<body>
+<section id="achievements">
+  <h1 class="section-title">Achievements,Events & Certifications</h1>
+
+  <div class="achievements-grid">
+    {% for a in achievements %}
+      <div class="achievement-card">
+
+        <h3>{{ a.title }}</h3>
+        <p class="description">{{ a.description }}</p>
+
+        {% if a.image %}
+          <img src="{{ a.image.url }}" alt="{{ a.title }}">
+        {% endif %}
+
+        {% if a.video_url %}
+          <a href="{{ video_url }}" target="_blank" rel="noopener noreferrer">
+    ▶ Watch Video
+</a>
+          <div class="video-wrapper">
+            <iframe src="{{ a.video_url }}" frameborder="0" allowfullscreen></iframe>
+          </div>
+        {% endif %}
+
+      </div>
+    {% endfor %}
+  </div>
+  <h3> and Many More...</h3>
+</section>
+<footer>
+	<p style="background-color: #000; color: #fff; padding: 10px; text-align: center;">Copyright © 2026 Waseem Feroz Khan B. All Rights Reserved.</p>
+	</footer>
+	
+</body>
+</html>

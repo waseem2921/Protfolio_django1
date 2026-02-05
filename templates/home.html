@@ -1,0 +1,374 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Portfolio</title>
+<meta http-equiv="X-UA-Compatible" content="IE-edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--title-icon-->
+<link rel="shortcut icon" href="images/icon.png">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<!--using FontAwesome-->
+<script src="{% static 'js/fontawesome.js' %}" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<!--main------------------------>
+	<section id="main">
+	<!--navigation-------------------------------->
+	<nav>
+	<!--logo-->
+	<a href="#" class="logo">Portfolio</a>
+	<div class="toggle"></div>
+	<ul class="menu">
+	<li class="active"><a href="#main" >Home</a></li>	
+	<li><a href="#about">About</a></li>	
+	<li><a href="#skills">Skills</a></li>	
+	<li><a href="#services">Projects</a></li>	
+	<li><a href="#experience" style="text-align:center;display:block;">Experience</a></li>		
+	<li><a href="#contact-form">Contact</a></li>	
+	</ul>
+	<!--language-->
+	<a href="#" class="lang">En</a>
+	</nav>
+	<!--name-->
+	<div class="name">
+	<!--hello-->
+	<p>Hello</p>
+	<!--name-->
+	<h1>I'm <font color="#17d1ac">Waseem</font> Feroz Khan</h1>
+	<!--details-->
+	<p class="details">I Build complete, End-toEnd Solutions that connect Data, Logic and Real-World Needs.</p>
+	<!--cv button-->
+	<a href="{% static 'files/waseemresume.pdf' %}" class="cv-btn">Download CV</a>
+	
+	 <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <div id="container"></div>
+	<!--particles-->
+	  <script>
+		var scene = new THREE.Scene();
+		var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+		var mouseX;
+		var mouseY;
+
+		var renderer = new THREE.WebGLRenderer({ alpha: true });
+		renderer.setSize(window.innerWidth / 2, window.innerHeight);
+		renderer.setClearColor(0x000000, 0);
+		document.getElementById('container').appendChild(renderer.domElement);
+
+		window.addEventListener('resize', function () {
+			camera.aspect = (window.innerWidth / 2) / window.innerHeight;
+			camera.updateProjectionMatrix();
+			renderer.setSize(window.innerWidth / 2, window.innerHeight);
+		});
+
+		var distance = Math.min(200,window.innerWidth/4);
+		var geometry = new THREE.BufferGeometry();
+		var vertices = [];
+
+		for (var i = 0; i < 5000; i++) {
+			var theta = Math.random() * Math.PI * 2;
+			var phi = Math.random() * Math.PI * 2;
+
+			var x = distance * Math.sin(theta) * Math.cos(phi);
+			var y = distance * Math.sin(theta) * Math.sin(phi);
+			var z = distance * Math.cos(theta);
+			vertices.push(x, y, z);
+		}
+		geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
+		var particles = new THREE.Points(geometry, new THREE.PointsMaterial({ color: 0x17d1ac, size: 1.5 }));
+		particles.boundingSphere = 50;
+
+		var renderingParent = new THREE.Group();
+		renderingParent.add(particles);
+
+		var resizeContainer = new THREE.Group();
+		resizeContainer.add(renderingParent);
+		scene.add(resizeContainer);
+
+		camera.position.z = 400;
+
+		var animate = function () {
+			requestAnimationFrame(animate);
+			renderer.render(scene, camera);
+		};
+
+		animate();
+
+		var animProps = {scale:1,xRot:0,yRot:0};
+		gsap.to(animProps,{duration :10,scale:1.3,repeat:-1,yoyo:true,ease:"sine",onUpdate:function(){
+			renderingParent.scale.set(animProps.scale,animProps.scale,animProps.scale);
+		}});
+		gsap.to(animProps,{duration:120,xRot:Math.PI*2,yRot:Math.PI*2,repeat:-1,yoyo:true,ease:"none",onUpdate:function(){
+			renderingParent.rotation.set(animProps.xRot,animProps.yRot,0);
+		}});
+	  </script>
+	</section>
+	
+	<!--about------>
+		<section id="about">
+	<!--text---------------------->
+	<div class="about-text">
+	<h1>About Me</h1>
+	<h2>Data Analyst |Junior Data Engineer</h2>
+	<p>I am a B.Tech graduate in Computer Science and Engineering with over one year of hands-on experience building and delivering complete solutions. I enjoy working close to real problems, taking ownership from start to finish, and turning complexity into structured, usable outcomes
+I am seeking an opportunity where I can grow as an engineer while contributing to a team that values impact, accountability, and long-term growth.</p>
+	<button href="#skills">View More Details</button>
+	</div>
+	<!--about-model------>
+	<div class="about-model">
+	<img src="{% static 'images/model.png' %}" alt="model"/>	
+	</div>
+	
+	</section>
+
+	<section id="skills">
+	<!--skills heading-->
+	<div class="s-heading">
+		<h1>Skills</h1>
+		<p>Technologies and Tools I Work With</p>
+	</div>
+	<!--skills container-->
+	<div class="skills-container">
+		<!--frontend skills-->
+		<div class="skill-group">
+			<h3>Data Engineering and Big Data</h3>
+			<div class="skills-list">
+				<span class="skill-tag">Kafka</span>
+				<span class="skill-tag">Spark</span>
+				<span class="skill-tag">Kubernetes</span>
+				<span class="skill-tag">Python</span>
+				<span class="skill-tag">SQL</span>
+				<span class="skill-tag">Docker</span>
+				<span class="skill-tag">Airflow</span>
+				<span class="skill-tag">HDFS</span>
+				<span class="skill-tag">CI/CD</span>
+				<span class="skill-tag">Snowflake</span>
+			</div>
+		</div>
+		<!--backend skills-->
+		<div class="skill-group">
+			<h3>Data Analysis and Visualization</h3>
+			<div class="skills-list">
+				<span class="skill-tag">Power BI</span>
+				<span class="skill-tag">Pandas</span>
+				<span class="skill-tag">Numpy</span>
+				<span class="skill-tag">MatplotLib</span>
+				<span class="skill-tag">Seaborn</span>
+				<span class="skill-tag">Excel</span>
+			</div>
+		</div>
+		<!--other skills-->
+		<div class="skill-group">
+			<h3>Backend and Programming Foundations</h3>
+			<div class="skills-list">
+				<span class="skill-tag">Python</span>
+				<span class="skill-tag">Django</span>
+				<span class="skill-tag">Flask</span>
+				<span class="skill-tag">HTML</span>
+				<span class="skill-tag">CSS</span>
+				<span class="skill-tag">JavaScript</span>
+				<span class="skill-tag">Figma</span>
+				<span class="skill-tag">BootStrap</span>
+			</div>
+		</div>
+		<div class="skill-group">
+			<h3>Other Computer Science Fundamentals</h3>
+			<div class="skills-list">
+				<span class="skill-tag">Operating Systems</span>
+				<span class="skill-tag">Computer Networks</span>
+				<span class="skill-tag">Git and GitHub</span>
+				<span class="skill-tag">Basic of Linux</span>
+				<span class="skill-tag">Basics of AI/ML/DL</span>
+				<span class="skill-tag">Langchain</span>
+		</div>
+	</div>
+	</section>
+
+	<!--services-->
+	<section id="services">
+	<!--heading-->
+	<div class="s-heading">
+	<h1>Currently Working-On</h1>
+	<p>Here Are Some Projects I Am Currently Working On.</p>
+	</div>
+	<!--services-box-containe-->
+	<div class="b-container">
+	<!--box-1-->
+	<div class="s-box">
+	<!--img-->
+	<div class="s-b-img">
+		<!--type-->
+		<div class="s-type">Enterprise Project</div>
+		<!--name-->
+		<img src="{% static 'images/s1.png' %}">
+	</div>
+	<!--text-->
+	<div class="s-b-text">
+	<a href="#">Building an enterprise-scale, end-to-end data platform involving data ingestion, transformation, validation, role-based access, and reporting workflows.</a>	
+    <a href="{% url 'category_detail' 'enterprise-projects' %}" class="cv-btn">Know More!</a>	
+</div>
+	</div>
+		<!--box-2-->
+	<div class="s-box">
+	<!--img-->
+	<div class="s-b-img">
+	<!--type-->
+		<div class="s-type">Health Project</div>
+		<!--name-->
+		<img src="{% static 'images/s2.png' %}">
+	</div>
+	<!--text-->
+	<div class="s-b-text">
+	<a href="#">Developing a health analytics system with structured data ingestion, preprocessing, and transformation pipelines to support reliable risk assessment.</a>
+     <a href="{% url 'category_detail' 'health-projects' %}" class="cv-btn">Know More!</a>	
+</div>
+	</div>
+	<!--box-3-->
+	<div class="s-box">
+	<!--img-->
+	<div class="s-b-img">
+	<!--type-->
+		<div class="s-type">DBMS Project</div>
+		<!--name-->
+		<img src="{% static 'images/s3.jpg' %}">
+	</div>
+	<!--text-->
+	<div class="s-b-text">
+	<a href="#">Designing a custom DBMS to understand data storage, schema design, query execution, and performance optimization.</a>
+     <a href="{% url 'category_detail' 'dbms-projects' %}" class="cv-btn">Know More!</a>	
+</div>
+	</div>
+	</section>
+	<!--portfolio-->
+	<section id="portfolio">
+	<!--heading-->
+	<h1 class="p-headind portfolio-title">Projects</h1>
+	<!--portfolio-container-->
+	<div class="p-container">
+	<!--portfolio-box-1-->
+	<div class="p-box">
+	<!--text-->
+	<div class="overlay-text">
+	<h1>Power BI</h1>
+	<p>Analytics Projects</p>	
+	<a href="{% url 'category_detail' 'power-bi-projects' %}" class="cv-btn">Know More!</a>
+	</div>
+		
+	</div>
+	<!--portfolio-box-2-->
+	<div class="p-box">
+		<!--text-->
+	<div class="overlay-text">
+	<h1>Data Engineering</h1>
+	<p>Projects</p>	
+	<a href="{% url 'category_detail' 'data-engineering-projects' %}" class="cv-btn">Know More!</a>
+	</div>
+	</div>
+	<!--portfolio-box-3-->
+	<div class="p-box">
+	<!--text-->
+	<div class="overlay-text">
+	<h1>Web Applications</h1>
+	<p>Client Projects</p>	
+	<a href="{% url 'category_detail' 'web-applications-projects' %}" class="cv-btn">Know More!</a>
+	</div>
+	</div>
+	<!--portfolio-box-4-------->
+	<div class="p-box">
+	<!--text-->
+	<div class="overlay-text">
+	<h1>SQL</h1>
+	<p>Projects</p>	
+	<a href="{% url 'category_detail' 'sql-projects' %}" class="cv-btn">Know More!</a>
+	</div>
+	</div>
+	<!--portfolio-box-5-->
+	<div class="p-box">
+	<!--text-->
+	<div class="overlay-text">
+	<h1>Others</h1>
+	<p>Projects</p>	
+	<a href="{% url 'category_detail' 'others-projects' %}" class="cv-btn">Know More!</a>
+	</div>
+	</div>
+		</section>
+		<!--Experience section-->
+		<section id="experience">
+			<h1 class="experience-heading">Experience</h1>
+			<div class="experience-container">
+				<div class="experience-item">
+					<h2>Data Analyst</h2>
+					<a href="https://www.microcare.io/solution/2"><h3>Microcare Academy</h3></a>
+					<span class="exp-duration">Jul 2025 - Present</span>
+					<p>Worked as a Data Analyst Intern with a Saudi-based organization, contributing to data analysis and reporting for real-world use cases.</p>
+				</div>
+				<div class="experience-item">
+					<h2>Software Developer Intern</h2>
+					<a href="https://www.linkedin.com/company/segmentop/about/"><h3>SegmenTop</h3></a>
+					<span class="exp-duration">Mar 2024 - Jun 2024</span>
+					<p>Worked as a Software Developer Intern at a Canada-based company, contributing to backend development and handling international client requirements.</p>
+				</div>
+			</div>
+		</section>
+		
+		<!--Contact-btn-->
+		<section id="contact-btn">
+	<!--heading-------------->
+	<h1 class="c-b-heading" style="color:#000000;">Certifications , Achievements and Events</h1>
+	<!--btn-------->
+		<a href="{% url 'achievements' %}"><button class="cv-btn">Know More</button></a>
+	</section>
+	<!--contact-form-->
+	<section id="contact-form">
+	<form>
+	<!--left---------->
+	<div class="contact-left">
+	<h1 class="c-l-heading"><font style="border-bottom: 3px solid #1ED98B;">Contac</font>t us</h1>
+	<!--name-------->
+	 <h4 color='#fff'>Gmail : waseemferozkhan2921@gmail.com</h4>
+	   <h4 color='#fff'> LinkedIn : <a href="https://www.linkedin.com/in/waseem-feroz-khan-b-203203260" color='#fff'>Waseem Feroz Khan B</a></h4>
+	   <h4 color='#fff'> Phone : +91 7032309169 </h4>
+	</div>
+	<!--right-------------->
+	<div class="contact-right">
+	<!--message-------->
+	<div class="message">
+	<font >Message</font>
+	<textarea name="message" rows="5" cols="20" placeholder="Write Message..."></textarea>
+	</div>
+	<!--submit-btn------------>
+	<button>submit</button>
+	</div>
+		
+	</form>
+	
+	</section>
+
+	<footer>
+	<p style="background-color: #000; color: #fff; padding: 10px; text-align: center;">Copyright © 2026 Waseem Feroz Khan B. All Rights Reserved.</p>
+	</footer>
+	
+	<script type="text/javascript" src="{% static 'js/JQuery3.3.1.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+	<script type="text/javascript">
+	
+		  /*Responsive Navigation*/
+	  $(document).ready(function(){
+	 $('.toggle').click(function(){
+		 $('.toggle').toggleClass('active')
+		 
+		 $('nav ul').toggleClass('active-menu')
+		
+		 
+	 })
+ });
+	
+	</script>
+</body>
+</html>

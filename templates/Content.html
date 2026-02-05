@@ -1,0 +1,332 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Portfolio</title>
+<meta http-equiv="X-UA-Compatible" content="IE-edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--title-icon-->
+<link rel="shortcut icon" href="images/icon.png">
+<style href="{% static 'css/style.css' %}" name='stylesheet'></style>
+<style>
+    /* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== GLOBAL ===== */
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #1f2937;
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+
+/* ===== PAGE TITLE ===== */
+h1 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+/* ===== ITEMS GRID ===== */
+.items {
+    max-width: 1100px;
+    height: auto;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== IMAGE ===== */
+.card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    background-color: #e5e7eb;
+    border-radius: 10px;
+}
+
+/* ===== CARD CONTENT ===== */
+.card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 18px 18px 8px;
+    color: #111827;
+}
+
+.card p {
+    font-size: 14px;
+    color: #4b5563;
+    margin: 0 18px 20px;
+    text-align: left;
+}
+
+/* ===== EMPTY STATE ===== */
+.items > p {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 16px;
+    color: #9ca3af;
+}
+.page-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    color: #6b7280;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .card img {
+        height: 180px;
+    }
+}
+#contact-btn{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content:center;
+	align-items: center;
+	height: 200px;
+	background-color: #F4F7FF;
+	margin: 20px 0px;
+	box-sizing: border-box;
+	box-shadow:2px 0px 20px rgba(0,0,0,0.4); 
+}
+.c-b-heading{
+	font-size: 2rem;
+	color:#ffffff;
+	font-family: calibri;
+	margin: 10px;
+	padding: 5px;
+	letter-spacing: 4px;
+	border-bottom: 2px solid #1E1E1E;
+	
+}
+#contact-btn button{
+	color:#FFFFFF;
+	font-size: 1rem;
+	font-family: calibri;
+	width:150px;
+	height: 40px;
+	margin: 10px;
+	background-color: #1E1E1E;
+	border: none;
+	outline: none;
+	box-shadow: 2px 5px 6px rgba(0,0,0,0.2);
+}
+#contact-btn button:hover{
+	background-color: #17d1ac;
+	color:#000000;
+	transition: all ease 0.5s;
+	font-weight: bold;
+}
+#contact-form{
+	width: 100%;
+	height: 90vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #ffffff;
+}
+#contact-form form{
+	display: flex;
+	width: 70%;
+	height: 60vh;
+	background-color: #1A1A1A;
+	box-shadow: 2px 12px 20px rgba(0,0,0,0.2);
+	border: 1px solid rgba(255,255,255,0.01)
+}
+
+.contact-left{
+	width: 40%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.contact-right{
+	width: 60%;
+	height: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border-left: 1px solid rgba(255,255,255,0.08);
+}
+.contact-right button{
+	width: 100%;
+	height: 50px;
+	background-color: #1ED98B;
+	font-weight: bold;
+	outline: none;
+	border: none;
+	margin: 0px;
+	color:#1B1B1B;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+
+}
+.c-l-heading{
+	font-family: calibri;
+	color:#FFFFFF;
+	font-size: 3rem;
+	letter-spacing: 2px;
+	font-weight: 400;
+	
+}
+.f-name,.f-email{
+	display: flex;
+	flex-direction: column;
+	font-family: calibri;
+	
+}
+.f-name font,.f-email font{
+	color:#BFBFBF;
+	font-size: 22px;
+}
+.f-name input,.f-email input{
+	height: 30px;
+	width:250px;
+	border: none;
+	outline: none;
+	background-color:transparent;
+	border-bottom: 1px solid #929292;
+	color:#FFFFFF;
+	margin: 10px 0px;
+}
+.f-email input::placeholder,
+.f-name input::placeholder{
+	opacity: 0.5;
+	letter-spacing: 1px;
+}
+.f-email input:focus,
+.f-name input:focus{
+	border-bottom: 1px solid #17d1ac;
+	transition: all ease 0.5s;
+}.message font{
+	font-size: 18px;
+	color:#4E4E4E;
+	font-family: calibri;
+	
+}
+.message{
+	margin: 20px;
+}
+.contact-right textarea{
+	width: 100% !important;
+	height: 320px !important;
+	border: none;
+	outline: none;
+	background-color:transparent;
+	box-sizing: border-box;
+	color:#EBEBEB;
+	font-size: 16px;
+}
+.contact-right textarea::placeholder{
+	color:#EBEBEB;
+	font-size: 18px;
+	letter-spacing: 2px;
+	font-family: calibri;
+}
+.contact-right button:active{
+	transform: scale(1.04);
+	transition: all ease 0.1s;
+}
+</style>
+<!--using FontAwesome-->
+<script src="{% static 'js/fontawesome.js' %}" crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>{{ category.name }}</h1>
+<p>{{ category.description }}</p>
+
+<div class="items">
+  {% for item in items %}
+    <div class="card">
+      <h3>{{ item.title }}</h3>
+      
+      <img src="{{ item.img.url }}" alt="{{ item.title }}" width="400" height="300">
+      <h3>Short Description</h3>
+      <p>{{ item.short_description }}</p>
+      <h3>Detailed Description</h3>
+      <p class="page-description">{{ item.detailed_description }}</p>
+    </div>
+  {% empty %}
+    <p>No items available.</p>
+  {% endfor %}
+</div>
+
+<!--contact-form-->
+	<section id="contact-form">
+	<form>
+	<!--left---------->
+	<div class="contact-left">
+	<h1 class="c-l-heading"><font style="border-bottom: 3px solid #1ED98B;">Contac</font>t us</h1>
+	<!--name-------->
+	 <h4 color='#fff'>Gmail : waseemferozkhan2921@gmail.com</h4>
+	   <h4 color='#fff'> LinkedIn : <a href="https://www.linkedin.com/in/waseem-feroz-khan-b-203203260" color='#fff'>Waseem Feroz Khan B</a></h4>
+	   <h4 color='#fff'> Phone : +91 7032309169 </h4>
+	</div>
+	<!--right-------------->
+	<div class="contact-right">
+	<!--message-------->
+	<div class="message">
+	<font >Message</font>
+	<textarea name="message" rows="5" cols="20" placeholder="Write Message..."></textarea>
+	</div>
+	<!--submit-btn------------>
+	<button>submit</button>
+	</div>
+		
+	</form>
+	
+	</section>
+
+    <footer>
+	<p style="background-color: #000; color: #fff; padding: 10px; text-align: center;">Copyright © 2026 Waseem Feroz Khan B. All Rights Reserved.</p>
+	</footer>
+	
+	
+</body>
+</html>
