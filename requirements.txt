@@ -3,3 +3,6 @@ gunicorn
 whitenoise
 pyodbc
 Pillow
+dj_database_url
+python-decouple
+python-dotenv
