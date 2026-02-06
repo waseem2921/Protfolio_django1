@@ -87,7 +87,7 @@ TEMPLATES = [
 #}
 
 DATABASES = { 
-     "default": dj_database_url.parse("DATABASE_URL")
+     "default": dj_database_url.parse("postgresql://postgress_tdaf_user:3qCJc20JFKkPM3IBdDBjPzoAHZ1QV0Yj@dpg-d623e82li9vc73c169k0-a.oregon-postgres.render.com/postgress_tdaf")
 }
 
 
