@@ -2,6 +2,7 @@ Django>=4.2
 gunicorn
 whitenoise
 Pillow
+psycopg2-binary
 dj_database_url
 python-decouple
 python-dotenv
