@@ -13,9 +13,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-from decouple import config
-from dotenv import load_dotenv
-load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('django-insecure-c@gv!lmj7-=d&qx)4lr5jj@xky+#tj-eny0+=pc-e#_+_-6nx7')
+SECRET_KEY = 'django-insecure-c@gv!lmj7-=d&qx)4lr5jj@xky+#tj-eny0+=pc-e#_+_-6nx7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -90,7 +87,7 @@ TEMPLATES = [
 #}
 
 DATABASES = { 
-     "default": dj_database_url.parse( "postgresql://postgress_tdaf_user:3qCJc20JFKkPM3IBdDBjPzoAHZ1QV0Yj@dpg-d623e82li9vc73c169k0-a.oregon-postgres.render.com/postgress_tdaf")
+     "default": dj_database_url.parse("DATABASE_URL")
 }
 
 
