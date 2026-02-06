@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import cloudinary_storage
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -86,14 +91,10 @@ TEMPLATES = [
 #    }
 #}
 
-DATABASES = { 
-     "default": dj_database_url.config(
-         default=os.environ.get("DATABASE_URL"),
-              conn_max_age=600,
-              ssl_require=True
-     )
+DATABASE_URL=os.getenv('DATABASE_URL')
+DATABASES = {
+    'default':dj_database_url.config(default=DATABASE_URL,conn_max_age=600),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -133,14 +134,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR/'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_ROOT='/media/'
-MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#MEDIA_ROOT='/media/'
+#MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
 
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-
+CLOUDINARY_STORAGE ={
+    'CLOUD_NAME' : os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY':os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET':os.getenv('CLOUDINARY_API_SECRET'),
+}
